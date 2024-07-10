@@ -9,10 +9,16 @@ const app = express();
 
 app.use(
 	cors({
-		origin: ["http://localhost:5500", "https://standardlaneschool.com.ng"],
-		preflightContinue: true,
+		origin: "*",
 	})
 );
+
+app.use((req, res, next) => {
+	res.header("Access-Control-Allow-Origin", "http://127.0.0.1:5500"); // Allow requests from your development origin
+	res.header("Access-Control-Allow-Headers", "Content-Type, Authorization"); // Allow specific headers
+	res.header("Access-Control-Allow-Methods", "POST"); // Allow POST method
+	next();
+});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
