@@ -10,6 +10,7 @@ const app = express();
 app.use(
 	cors({
 		origin: ["http://localhost:5500", "https://standardlaneschool.com.ng"],
+		preflightContinue: true,
 	})
 );
 
