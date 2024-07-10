@@ -1,0 +1,13 @@
+extends baseEmail 
+
+block content 
+    h2= subject 
+    p Hello #{name},
+    //- p Someone has requested a link to change your password.
+    //- p You can do this by submitting a patch request with your new password to the link below.
+    //- a(href=`${url}`) Reset Password.
+    p Did you request to deactivate your account?
+    p Copy the reset token below to deactivate your account.
+    div(text-align="center")
+        h1(backgroundColor="blue",color="white") #{url}
+    p If you did not request for deactivation , please ignore this email and reach out to #{email}
