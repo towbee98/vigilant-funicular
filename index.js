@@ -1,22 +1,45 @@
 const express = require("express");
+const cors = require("cors");
 const config = require("./config/env");
 const { RegisterStudent } = require("./email");
+
 const port = config.PORT;
 
 const app = express();
 
+app.use(
+	cors({
+		origin: ["http://localhost:5500", "https://standardlaneschool.com.ng"],
+	})
+);
+
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.post("/api/register", async (req, res) => {
-	const { parentName, parentEmail, childName, childAge, message } = req.body;
-	res.status(200).json({ message: "Messge sent successfully" });
-	await new RegisterStudent(parentEmail, config.EMAIL, {
-		childName,
-		childAge,
-		message,
-		parentName,
-		parentEmail,
-	}).sendRegistrationDetails();
+	try {
+		console.log(req.body);
+		const { parentName, parentEmail, childName, childAge, message } = req.body;
+		await new RegisterStudent(parentEmail, config.EMAIL, {
+			childName,
+			childAge,
+			message,
+			parentName,
+			parentEmail,
+		}).sendRegistrationDetails();
+
+		res
+			.status(200)
+			.json({ status: "success", message: "Messge sent successfully" });
+	} catch (error) {
+		res.status(500).json({ status: "error", message: error.message });
+	}
 });
+
+app.post("/api/wishlist", async (req, res) => {
+	res.status(200).json({ message: "Email registered successfully." });
+});
+
 app.get("/api/", async (req, res) => {
 	res.status(200).json({ message: "success" });
 });
