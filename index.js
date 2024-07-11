@@ -38,7 +38,14 @@ app.post("/api/register", async (req, res) => {
 	}
 });
 
-app.post("/api/wishlist", async (req, res) => {
+app.post("/api/contact", async (req, res) => {
+	const { name, email, subject, message } = req.body;
+	// await new RegisterStudent(email, config.EMAIL, {
+	// 	name,
+	// 	email,
+	// 	subject,
+	// 	message,
+	// }).sendRegistrationDetails();
 	res.status(200).json({ message: "Email registered successfully." });
 });
 

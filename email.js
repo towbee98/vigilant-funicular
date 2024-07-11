@@ -80,6 +80,13 @@ class RegisterStudent extends Email {
 	async sendRegistrationDetails() {
 		await this.send("Registration", "Student Enrollment");
 	}
+
+	async sendContactMessage() {
+		await this.send("Contact", data.subject);
+	}
+	async send() {
+		await this.send("Contact", "Contact Us");
+	}
 }
 
 module.exports = { RegisterStudent };
