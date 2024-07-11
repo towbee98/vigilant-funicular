@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const config = require("./config/env");
 const { RegisterStudent } = require("./email");
-
+const task = require("./cron");
 const port = config.PORT;
 
 const app = express();
@@ -15,6 +15,7 @@ app.use(
 	})
 );
 
+task.start();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
