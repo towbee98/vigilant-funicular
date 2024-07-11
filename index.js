@@ -23,7 +23,7 @@ app.post("/api/register", async (req, res) => {
 	try {
 		console.log(req.body);
 		const { parentName, parentEmail, childName, childAge, message } = req.body;
-		await new RegisterStudent(parentEmail, config.EMAIL, {
+		await new RegisterStudent(parentEmail, `info@standardlaneschool.com.ng`, {
 			childName,
 			childAge,
 			message,
