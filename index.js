@@ -22,13 +22,21 @@ app.use(express.urlencoded({ extended: true }));
 app.post("/api/register", async (req, res) => {
 	try {
 		console.log(req.body);
-		const { parentName, parentEmail, childName, childAge, message } = req.body;
+		const {
+			parentName,
+			parentEmail,
+			parentPhone,
+			childName,
+			childAge,
+			message,
+		} = req.body;
 		await new RegisterStudent(parentEmail, `info@standardlaneschool.com.ng`, {
 			childName,
 			childAge,
 			message,
 			parentName,
 			parentEmail,
+			parentPhone,
 		}).sendRegistrationDetails();
 
 		res

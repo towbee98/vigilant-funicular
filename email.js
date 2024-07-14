@@ -59,6 +59,7 @@ class Email {
 			message: this.data.message,
 			parentName: this.data.parentName,
 			parentEmail: this.data.parentEmail,
+			parentPhone: this.data.parentPhone,
 		});
 
 		const mailOptions = {
