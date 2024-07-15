@@ -4,12 +4,12 @@ const config = require("./config/env");
 const { RegisterStudent } = require("./email");
 const task = require("./cron");
 const port = config.PORT;
-
+const recipient = `info@standardlaneschool.com.ng`;
 const app = express();
 
 app.use(
 	cors({
-		origin: ["http://127.0.0.1:5500", "https://standardlaneschool.com.ng"],
+		origin: ["https://standardlaneschool.com.ng"],
 		allowedHeaders: "Content-Type, Authorization",
 		methods: "POST",
 	})
@@ -30,7 +30,8 @@ app.post("/api/register", async (req, res) => {
 			childAge,
 			message,
 		} = req.body;
-		await new RegisterStudent(parentEmail, `info@standardlaneschool.com.ng`, {
+
+		await new RegisterStudent(parentEmail, recipient, {
 			childName,
 			childAge,
 			message,
